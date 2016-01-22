@@ -1,0 +1,90 @@
+import java.util.Scanner;                                // program uses Scanner even though its kinda useless here
+
+public class Calculator                                  // creating our three different methods in our class , this is our class declaration         
+{
+   private int x,y;                                      // setting up our integers to be added or multiplied 
+
+    int addNumbers()                                     // create addNumbers method      
+    {
+        int answer = x+y;
+        return answer;                                   // return created answer to then use in our other class
+    }
+
+    
+
+    int multiplyNumbers()                                // same here but creating second method that multiplies the numbers
+    {
+        int answer = x*y;
+        return answer;          
+    }
+
+    void setNumbers(int a,int b)                         // third method that uses two new integers a and b to avoid conflict with x and y  
+    {
+	x = a;
+	y = b;
+    }
+}
+
+//*END OF CALCULATOR CLASS*\\
+
+
+
+
+
+import java.util.Scanner;                              // program uses Scanner 
+
+public class CalculatorApp                             // class declaration 
+{
+
+   public static void main(String[] args)                // main method begins program execution
+   {
+
+    	Scanner input = new Scanner(System.in);          // create Scanner to obtain input from command window
+
+   	Calculator myCalculator = new Calculator();     // create a Calculator object and assign it to myCalculator , by convention the first 
+                                                        // letter shouldn't be in capitals   
+
+    	int answer = 0;                                 // initialising answer to null so that we can retrieve them from methods  
+    	int inputA, inputB;                             // initialising input variables to sum or to multiply 
+    	int operator;                                   // initialising switch operator 
+    	boolean done = false;                           // setting the while loop limits 
+
+        while (!done)                                   // starting while loop for different menu conditions 
+        {
+           System.out.print("Please enter your desired option:\n [1]- Set numbers\n [2]- Add Numbers\n [3]- Multiply numbers "); // printing out the menu
+
+           operator = input.nextInt();                   // operator becomes value set after inputing and pressing enter thus the 'next'
+         
+
+        	switch (operator)                                                        // staring up switch 
+		{
+                         case 1: 
+				 System.out.print("please input your first number");
+          			 inputA = input.nextInt();                               // setting up input A (by user)
+                                 System.out.print("please input your second number");
+           		         inputB = input.nextInt();                               // setting up input B (by user)
+                                 myCalculator.setNumbers(inputA,inputB);                 // sending inputs to setNumbers method
+                                 break;
+           		 case 2: 
+                                 answer = myCalculator.addNumbers();  // fetch the returned answer from the addNumber method in the Calculator class 
+                                                                      // in the .java file and set it to myCalculator object
+                                 System.out.println(answer);          // print that retrieved answer 
+                                 break;
+
+            		 case 3: 
+				 answer = myCalculator.multiplyNumbers();  //fetch the  returned answer from multiplyNumbers(), the rest is the same 
+                                                                           // as stated in case 2 
+                                 System.out.println(answer);
+                                 break;
+        	 }
+             
+    	 }       
+
+    input.close();                                                       // close while loop thus stopping operator input
+
+  }
+
+}
+
+
+//*END OF CALCULATORAPP CLASS*\\
